@@ -11,6 +11,8 @@ using namespace std;
 #define CIRCLE 4
 #define CLEAR 5
 #define EDIT 6 
+#define EDITED 7
+
 bool foundpoint = false;
 GLfloat pointsize = 5000;
 GLfloat start_x, start_y;
@@ -214,9 +216,11 @@ void MenuEvents(int option)
 		glutPostRedisplay();
 		break;
 	case EDIT :
+		isedit = true;
+		break;
+	case EDITED :
 		isedit = !isedit;
 		break;
-
 	default:
 		break;
 	}
@@ -234,6 +238,7 @@ int CreateGLUTMenus()
 	glutAddMenuEntry("Circle", CIRCLE);
 	glutAddMenuEntry("Clear", CLEAR);
 	glutAddMenuEntry("EDIT", EDIT);
+	glutAddMenuEntry("EDITED", EDITED);
 
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 
@@ -258,9 +263,10 @@ void cler()
 }
 
 void mouse(int btn, int state, int x, int y)
-{
-	if (!isedit)
+{  
+	if (!isedit )
 	{
+	
 	if (btn == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
 	
